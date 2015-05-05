@@ -1,0 +1,7 @@
+<% ps_transaction = Billing::Pagseguro.new(payment) %>
+<% if ps_transaction.is_not_completed? %>
+  <p>Clique no botão abaixo e realize o pagamento</p>
+  <%= link_to image_tag('btn-pagseguro.gif'), ps_transaction.payment_url, target: :_blank %>
+<% else %>
+  <p>Seu pagamento foi recebido</p>
+<% end %>

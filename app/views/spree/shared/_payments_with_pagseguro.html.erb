@@ -1,0 +1,7 @@
+<% order.payments.valid.each do |payment| %>
+  <% if payment.payment_method.is_a?(Spree::PaymentMethod::PagSeguro) %>
+    <%= render 'spree/shared/pag_seguro_info', payment: payment, order: order %>
+  <% else %>
+    <%= render payment%><br/>
+  <% end %>
+<% end %>

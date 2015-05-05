@@ -1,0 +1,5 @@
+<%= link_to('Pagar com PagSeguro', pagseguro_url(:payment_method_id => payment_method.id), :method => :post, :id => "pagseguro_button") %>
+
+<script>
+  PagSeguro.paymentMethodID = "<%= payment_method.id %>"
+</script>
