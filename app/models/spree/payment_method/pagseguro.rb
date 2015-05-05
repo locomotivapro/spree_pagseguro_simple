@@ -1,5 +1,5 @@
 module Spree
-  class PaymentMethod::PagSeguro < PaymentMethod
+  class PaymentMethod::Pagseguro < PaymentMethod
     preference :email, :string
     preference :token, :string
 

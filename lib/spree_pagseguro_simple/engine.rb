@@ -20,7 +20,7 @@ module SpreePagseguro
     config.to_prepare &method(:activate).to_proc
 
     initializer "spree_pagseguro.register.payment_methods", :after => 'spree.register.payment_methods' do |app|
-      app.config.spree.payment_methods << Spree::PaymentMethod::PagSeguro
+      app.config.spree.payment_methods << Spree::PaymentMethod::Pagseguro
     end
   end
 end
