@@ -13,7 +13,7 @@ module SpreePagseguroSimple
     end
 
     def is_not_completed?
-      !@payment.completed? && transaction_exists_and_is_loaded && @pag_seguro_transaction.status == 'pending'
+      !@payment.completed? && transaction_exists_and_is_loaded && @pag_seguro_transaction.state == 'pending'
     end
 
     def payment_url
@@ -47,8 +47,8 @@ module SpreePagseguroSimple
     end
 
     def build_pagseguro
-      redirect_url     = "#{Spree::Store.default}/pagseguro/callback?order=#{@order.number}"
-      notification_url = "#{Spree::Store.default}/pagseguro/notify"
+      redirect_url     = "#{Spree::Store.default.url}/pagseguro/callback?order=#{@order.number}"
+      notification_url = "#{Spree::Store.default.url}/pagseguro/notify"
       customer_name = [@order.bill_address.firstname, @order.bill_address.lastname].join(' ')
       customer_email = @order.email
       customer_ddd = @order.bill_address.phone.gsub(/\D/,'')[0..1] if @order.bill_address.phone
