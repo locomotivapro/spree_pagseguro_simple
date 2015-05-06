@@ -1,8 +1,11 @@
 # encoding: UTF-8
+$:.push File.expand_path("../lib", __FILE__)
+require 'spree_pagseguro_simple/version'
+
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_pagseguro_simple'
-  s.version     = '2.1.3'
+  s.version     = SpreePagseguroSimple::VERSION
   s.summary     = 'Add support for Pagseguro checkout as a payment method for spree 3.'
   s.description = s.summary
   s.required_ruby_version = '>= 2.0.0'
