@@ -1,4 +1,4 @@
-# Spree PagSeguroSimple (Brazilian Payment Method)
+# Spree PagSeguroSimple
 
 [![Code Climate](https://codeclimate.com/github/locomotivapro/spree_pagseguro_simple/badges/gpa.svg)](https://codeclimate.com/github/locomotivapro/spree_pagseguro_simple)
 [![Gem Version](https://badge.fury.io/rb/spree_pagseguro_simple.svg)](http://badge.fury.io/rb/spree_pagseguro_simple)
