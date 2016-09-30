@@ -5,18 +5,15 @@ module Spree
     def callback
       @order = Spree::Order.find_by_number(params[:order])
 
-      pagseguro_transaction = Spree::PagseguroTransaction.find_by_order_id(@order.number)
+      pagseguro_transaction = Spree::PagSeguroTransaction.find_by_order_id(@order.number)
       pagseguro_transaction.update_attribute :state, 'waiting'
 
       redirect_to spree.order_path(@order)
     end
 
     def notify
-      logger.info "[PAGSEGURO] Gateway is calling /notify"
-      logger.info params
-
-      #notification = Spree::PagseguroTransaction.update_last_transaction(params)
-      #payment_method = Spree::PaymentMethod.where(type: 'Spree::Gateway::PagSeguro').first
+      notification = Spree::PagSeguroTransaction.update_last_transaction(params)
+      payment_method = Spree::PaymentMethod.where(type: 'Spree::Gateway::PagSeguro').first
 
       @order = Spree::Order.find_by_number(notification.reference)
       payment = @order.payments.where(:state => "checkout",

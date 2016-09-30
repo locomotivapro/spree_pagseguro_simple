@@ -24,7 +24,10 @@ This gem approach takes in consideration that a incomplete order with an approve
 
 2. Click `Create`, and enter your Store's Pagseguro Email and Token in the fields provided.
 
-3. `Save` and enjoy!
+3. By default sandbox env is activated. To allow production env you
+   shoud define ENV['PAGSEGURO_ENV'].
+
+4. `Save` and enjoy!
 
 4. Is important to go to general settings in spree and configure the store url for redirects and notifications
 
