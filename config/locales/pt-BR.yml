@@ -1,0 +1,3 @@
+pt-BR:
+  spree:
+    pagseguro_transaction_success: Transação registrada com sucesso no PagSeguro. Você receberá em breve atualizações em seu pedido.
