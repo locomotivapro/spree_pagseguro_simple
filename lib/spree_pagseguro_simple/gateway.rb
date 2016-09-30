@@ -32,7 +32,7 @@ module SpreePagseguroSimple
     end
 
     def set_environment
-      @env = Rails.env.production? ? :production : :sandbox
+      @env = ENV['PAGSEGURO_ENV'] ? :production : :sandbox
       PagSeguro::Url.environment = @env
     end
 
