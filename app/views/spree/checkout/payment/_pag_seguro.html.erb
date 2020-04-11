@@ -1,1 +1,10 @@
-<p>Finalize seu pedido para efetuar o pagamento no PagSeguro</p>
+<p>Aguarde, enquanto carregamos a página para que realize a o pagamento.</p>
+<%= content_for :head do %>
+  <% if ENV['PAGSEGURO_ENV'].eql? 'sandbox' %>
+    <script type="text/javascript" src="https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.lightbox.js"></script>
+  <% else%>
+    <script type="text/javascript" src="https://stc.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.lightbox.js"></script>
+  <% end %>
+<% end %>
+
+<div data-pagseguro-code="<%= @pag_seguro_payment.code %>">

@@ -27,20 +27,31 @@ module Spree
                                       payment_method_id: payment_method.id,
                                       amount: notification.gross_amount).last
 
-      if payment
-        if notification.approved?
-          payment.complete!
-        end
+      pag_seguro_transaction = Spree::PagSeguroTransaction.find_by_order_id @order.number
 
-        if notification.cancelled? || notification.returned?
-          payment.void!
+      if payment
+        ActiveRecord::Base.transaction do
+          if notification.approved?
+            payment.complete!
+
+            if pag_seguro_transaction.present?
+              pag_seguro_transaction.update!(state: 'approved')
+            end
+          end
+
+          if notification.cancelled? || notification.returned?
+            payment.void!
+
+            if pag_seguro_transaction.present?
+              pag_seguro_transaction.update!(state: 'cancelled')
+            end
+          end
         end
       else
         raise StandardError
       end
 
-      render nothing: true, head: :ok
+      render body: :ok
     end
-
   end
 end
