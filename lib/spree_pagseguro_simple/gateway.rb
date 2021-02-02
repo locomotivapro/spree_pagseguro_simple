@@ -12,28 +12,29 @@ module SpreePagseguroSimple
       process
     end
 
+    def code
+      @pag_seguro_transaction.code
+    end
+
     def is_not_completed?
       !@payment.completed? && transaction_exists_and_is_loaded && @pag_seguro_transaction.state == 'pending'
     end
 
     def payment_url
-      subdomain = @env == :sandbox ? 'sandbox.pagseguro' : 'pagseguro'
       "https://#{subdomain}.uol.com.br/v2/checkout/payment.html?code=#{@pag_seguro_transaction.code}"
     end
 
     private
-    def process
-      set_environment
 
+    def subdomain
+      @subdomain ||= (ENV['PAGSEGURO_ENV'] == 'sandbox') ? 'sandbox.pagseguro' : 'pagseguro'
+    end
+
+    def process
       unless transaction_exists_and_is_loaded
         build_pagseguro
         create_transaction
       end
-    end
-
-    def set_environment
-      @env = ENV['PAGSEGURO_ENV'] ? :production : :sandbox
-      PagSeguro::Url.environment = @env
     end
 
     def transaction_exists_and_is_loaded

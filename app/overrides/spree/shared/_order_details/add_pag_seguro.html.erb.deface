@@ -1,2 +1,0 @@
-<!-- replace_contents ".payment-info" -->
-<%= render 'spree/shared/payments_with_pagseguro', order: order %>
